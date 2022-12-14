@@ -1,51 +1,33 @@
-from enum import Enum
-
-from django.core import validators
 from django.db import models
-from django.contrib.auth import models as auth_models
 
-from music_app.core.model_mixins import ChoicesEnumMixin
-from music_app.core.validators import validate_only_letters
-
-
-class Gender(ChoicesEnumMixin, Enum):
-    male = 'Male'
-    female = 'Female'
+from music_app.albums.models import Album
+from music_app.singers.models import Singer
 
 
-class AppUser(auth_models.AbstractUser):
-    first_name = models.CharField(
-        max_length=20,
-        validators=(
-            validators.MinLengthValidator(2),
-            validate_only_letters,
-        )
-    )
+# Create your models here.
 
-    last_name = models.CharField(
+class Song(models.Model):
+    name = models.CharField(
         max_length=50,
-        validators=(
-            validators.MinLengthValidator(5),
-            validate_only_letters,
-        )
+        null=False,
+        blank=False,
     )
 
-    email = models.EmailField(
-        unique=True,
-    )
-
-    age = models.PositiveIntegerField(
+    in_the_album = models.ForeignKey(
+        Album,
+        blank=True,
         null=True,
-        blank=True
+        on_delete=models.RESTRICT,
     )
 
-    country = models.CharField(
-        max_length=20,
+    duration = models.IntegerField(
+        null=False,
+        blank=False,
     )
 
-    gender = models.CharField(
-        choices=Gender.choices(),
-        max_length=Gender.max_len()
+    released_by = models.ForeignKey(
+        Singer,
+        blank=True,
+        null=True,
+        on_delete=models.RESTRICT,
     )
-
-    REQUIRED_FIELDS = ['email']
