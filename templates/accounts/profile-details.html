@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+Profile Information:
+
+<h1>Username: {{ object.username }}</h1>
+<p> First name: {{ object.first_name }}</p>
+<p> Last name: {{ object.last_name }}</p>
+<p> Age: {{ object.age }}</p>
+<p> Country: {{ object.country }}</p>
+<p> Gender: {{ object.gender }}</p>
+<p> E-mail: {{ object.email }}</p>
+<p> Owned singers:
+    {% for singer in singers %}
+        {% if object.id == singer.owner_id %}
+            <a href="{% url 'singer details' pk=singer.id %}"> {{ singer.full_name }}, </a>
+        {% endif %}
+    {% endfor %}
+
+<p> Number of added singer:
+    {% if singers_count %}
+        {{ singers_count }}
+    {% else %}
+        {{ 0 }}
+    {% endif %}
+</p>
+<a href="{% url 'edit profile' pk=object.pk %}">
+    Edit profile
+</a>
+    <a href="{% url 'delete profile' pk=object.pk %}">Delete profile</a>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+
+<div class="register-div">
+    <div class="register-box">
+        <h1> Music App</h1>
+        <form method="post" action="{% url 'sign up' %}">
+            <p>Username:{{ form.username }}</p>
+            <p> E-Mail: {{ form.email }} </p>
+            <p> Password: {{ form.password1 }}</p>
+            <p> Repeat password: {{ form.password2 }}</p>
+            <button type="submit">Sign up</button>
+            {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}

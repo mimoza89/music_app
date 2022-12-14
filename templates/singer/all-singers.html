@@ -1,0 +1,13 @@
+<h1> Singers: </h1>
+
+{% for singer in singers %}
+    <div class="all-singers">
+    <ul>
+        <li>
+            <a href="{% url 'singer details' pk=singer.pk %}" pk=object.pk>
+                {{ singer.full_name }}
+            </a>
+        </li>
+    </ul>
+    </div>
+{% endfor %}

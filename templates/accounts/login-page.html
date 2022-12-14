@@ -1,0 +1,15 @@
+
+    <div class="login-div">
+        <div class="login-box">
+            <h1>Music App</h1>
+            <form method="post" action="{% url 'sign in' %}">
+                {{ form.as_p }}
+                <input type="hidden" name="next" value="{{ next }}">
+                <button type="submit">Log in</button>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="second-option">
+            <p>Don't have account? <a href="{% url 'sign up' %}">Sign up</a></p>
+        </div>
+    </div>

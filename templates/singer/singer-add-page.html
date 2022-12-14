@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+{% block page_content%}
+<div class="add-singer">
+    <form method="post" action="{% url 'add singer' %}">
+        {{ form.as_p }}
+        <button type="submit">Add a singer</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

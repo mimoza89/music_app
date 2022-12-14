@@ -1,0 +1,55 @@
+<h1>Information for the singer</h1>
+
+<div class="singer-information">
+    <p> Name:{{ singer.full_name }}<p>
+    <p> Numbers of albums: {{ singer.albums_issued }}</p>
+    <p> Country: {{ singer.country }}</p>
+    <p>Genre: {{ singer.genre }}</p>
+    <p>Added by: <a href="{% url 'profile details' pk=singer.owner_id %}">{{ singer.owner }}<a></p>
+    <p>Albums on the platform:
+        {% for album in albums %}
+            <a href="{% url 'album details' pk=album.pk %}"> {{ album.name }} </a>
+        {% endfor %}
+    </p>
+    <p>Comments: {{ comments.count }}<p>
+
+</div>
+
+{% if owner %}
+<button>
+    <a href="{% url 'edit singer information' pk=singer.pk %}">Edit</a>
+    <a href="{% url 'delete singer' pk=singer.pk %}">Delete</a>
+    <a href="{% url 'add album' pk=singer.pk %}">Add album of the singer</a>
+</button>
+{% endif %}
+
+
+
+                    <!-- Start Comments Section -->
+                    <div class="comments">
+
+                    </div>
+                    <!-- End Comments Section -->
+                </div>
+
+                <!-- Start Add Comments Section -->
+                <div class="addComments">
+                    <div class="reaction">
+                        <h3>
+                            <i class="far fa-smile"></i>
+                        </h3>
+                    </div>
+
+                    <!-- Start Add Comments Form -->
+                    <form method="post" action="{% url 'index' %}">
+                        <label for="id_body">Body:</label>
+                        <textarea name="comment_text" cols="40" rows="10" placeholder="Add comment..." maxlength="300"
+                                  required="" id="comment_text"></textarea>
+                        <!-- Post Comments Button -->
+                        <button type="submit">Post</button>
+                        {% csrf_token %}
+                    </form>
+                    <!-- End Add Comments Form -->
+
+                </div>
+                <!-- End Add Comments Section -->

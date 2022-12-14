@@ -1,0 +1,11 @@
+<form action="{% url 'edit singer information' pk=singer.pk %}" method="post">
+    <div class="singer-information">
+        <p>{{ form.full_name }}</p>
+        <p>{{ form.albums_issued }}</p>
+        <p>{{ form.country }}</p>
+        <p>{{ form.genre }}</p>
+        <p>{{ form.age }}</p>
+    </div>
+    <button type="submit">Edit</button>
+        {% csrf_token %}
+</form>

@@ -1,0 +1,11 @@
+<h1> All albums: </h1>
+<div class="all-albums-by-singer">
+    {% for singer in singers %}
+        <p> Albums by {{ singer.full_name }}:</p>
+        {% for album in albums %}
+            {% if album.released_by_id == singer.id %}
+                <p> {{ album.name }}</p>
+            {% endif %}
+        {% endfor %}
+{% endfor %}
+</div>

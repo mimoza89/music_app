@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block page_content%}
+
+ <h1>Add a song</h1>
+<div class="add-song">
+    <form method="post" action="{% url 'add a song' pk=album.pk %}">
+        {% csrf_token %}
+        <p>{{ form.name }}</p>
+        <p>{{ form.duration }}</p>
+        <button type="submit">Add a song</button>
+
+    </form>
+</div>
+{% endblock %}
+
+
+{#  <h1>Add a song</h1>#}
+{# <form method="post" action="{% url 'add a song' %}">#}
+ {#  <p> Name: {{ form.name }} </p>#}
+  {#   <p> Duration: {{ form.duration }} </p> #}
+    {#  <button type="submit"> Add a song</button> #}
+    {#  {% csrf_token %} #}
+{#  </form>#}

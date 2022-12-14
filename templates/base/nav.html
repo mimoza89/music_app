@@ -1,0 +1,48 @@
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <!-- Link to Home Page -->
+            <a class="home" href="{% url 'index' %}">
+                <i>Music App</i>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <ul class="nav-group">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                    <a href="{% url 'singers' %}">
+                        <i>Singers</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'albums' %}">
+                        <i>Albums</i>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'profile details' pk=request.user.pk %}">
+                            <i>Profile</i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sign out' %}">
+                            <i>Sign out</i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'sign up' %}">
+                            <i>Sign up</i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sign in' %}">
+                            <i>Sign in</i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

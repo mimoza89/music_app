@@ -1,0 +1,20 @@
+<h1>Album information</h1>
+<div class="album-information">
+    <p> Name: {{ album.name }}</p>
+    <p> Released by: {{ singer.full_name }}</p>
+    <p> Year of release: {{ album.year_released }}</p>
+    <p> Number of songs: {{ album.number_of_songs }}</p>
+    <p> Added to the platform by: {{ album.owner }}</p>
+
+    {% if songs %}
+      <a href="{% url 'songs in the album' pk=album.pk %}"> View the songs in the album</a>
+     {% endif %}
+  </div>
+
+{% if singer.owner == request.user %}
+
+  <a href="{% url 'add a song' pk=album.pk %}">Add a song to the album</a>
+{% endif %}
+{% if request.user == album.owner %}
+    <a href="{% url 'edit album' pk=album.pk %}">Edit album information</a>
+{% endif %}
